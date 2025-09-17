@@ -10,9 +10,6 @@ pool_of_letters = {
         'Y':2, 'Z':1
 }
 
-letter_bank = ["D", "O", "G", "X", "X", "X", "X", "X", "X", "X"]
-word = "DOG"
-
 def draw_letters():
     # output: ['A','T','U','D','X','S','J','N','M','P']
 
@@ -58,5 +55,3 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
     pass
-
-uses_available_letters(word, letter_bank)
