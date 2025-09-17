@@ -1,13 +1,62 @@
 from random import randint
+# create a dictionary to represent the letter pool
+pool_of_letters = {
+        'A':9, 'B':2, 'C':2, 'D':4,
+        'E':12, 'F':2, 'G':3, 'H':2,
+        'I':9, 'J':1, 'K':1, 'L':4,
+        'M':2, 'N':6, 'O':8, 'P':2,
+        'Q':1, 'R':6, 'S':4, 'T':6,
+        'U':4, 'V':2, 'W':2, 'X':1,
+        'Y':2, 'Z':1
+}
+
+letter_bank = ["D", "O", "G", "X", "X", "X", "X", "X", "X", "X"]
+word = "DOG"
 
 def draw_letters():
-    pass
+    # output: ['A','T','U','D','X','S','J','N','M','P']
+
+    letter_bank = []
+    pool_dict_copy = pool_of_letters.copy()
+
+    while len(letter_bank) < 10:
+        available_letters = []
+        # check what letters are avaliable (count > 0)
+        for letter, count in pool_dict_copy.items():
+            if count > 0:
+                available_letters.append(letter)
+        # pick one avaliable letter randomly
+        random_index = randint(0, len(available_letters) - 1)
+        random_letter = available_letters[random_index]
+        #print(random_letter)
+        # add the random avaliable letter to the hand
+        letter_bank.append(random_letter)
+        # decrement the count of the letter in pool copy
+        pool_dict_copy[random_letter] -= 1
+
+    return letter_bank
 
 def uses_available_letters(word, letter_bank):
-    pass
+    # make a copy of letter_bank
+    letter_bank_copy = letter_bank.copy()
+    #capatalize all words
+    upper_word = word.upper()
+    # check if letter is in letter_bank
+    for letter in upper_word:
+        if letter in letter_bank_copy:
+        # if word in bank remove so dosent effect future checks
+            letter_bank_copy.remove(letter)
+            #print(f'{letter} in {letter_bank}')
+        else:
+            #if not in bank then return false
+            return False
+    return True
+
 
 def score_word(word):
     pass
 
 def get_highest_word_score(word_list):
     pass
+
+uses_available_letters(word, letter_bank)
