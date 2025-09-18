@@ -51,7 +51,45 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+    upper_word = word.upper()
+    # print(upper_word)
+
+    # points counter
+    num_of_points = 0
+
+    point_value = {
+        1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
+        2: ['D', 'G'],
+        3: ['B', 'C', 'M', 'P'],
+        4: ['F', 'H', 'V', 'W', 'Y'],
+        5: ['K'],
+        8: ['J', 'X'],
+        10:['Q', 'Z']
+    }
+
+    for num, alpha in point_value.items():
+        #print(num, alpha)
+        for i in alpha:
+            #print(i)
+            for letter in upper_word:
+                # compare letter to dict value
+                if letter == i:
+                    # print(f"{word} and {i} are the same letters")
+                    # add the key(point)to the num of points
+                    #print(num)
+                    num_of_points += num
+
+    if 6 < len(word) < 11:
+        # word gets an additional 8 points
+        # print(f"{word} is longer than 6 words")
+        num_of_points += 8
+    #else:
+        # word points dosent get additional points
+        #print(f"{word} is NOT longer than 6 words")
+
+    #print(num_of_points)
+    return num_of_points
+
 
 def get_highest_word_score(word_list):
     pass
