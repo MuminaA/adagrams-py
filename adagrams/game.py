@@ -10,6 +10,7 @@ pool_of_letters = {
         'Y':2, 'Z':1
 }
 
+# Wave 1
 def draw_letters():
     # output: ['A','T','U','D','X','S','J','N','M','P']
 
@@ -33,6 +34,7 @@ def draw_letters():
 
     return letter_bank
 
+# Wave 2
 def uses_available_letters(word, letter_bank):
     # make a copy of letter_bank
     letter_bank_copy = letter_bank.copy()
@@ -49,7 +51,7 @@ def uses_available_letters(word, letter_bank):
             return False
     return True
 
-
+# Wave 3
 def score_word(word):
     upper_word = word.upper()
     # print(upper_word)
@@ -90,6 +92,29 @@ def score_word(word):
     #print(num_of_points)
     return num_of_points
 
-
+# Wave 4
 def get_highest_word_score(word_list):
-    pass
+    # keep track of the best word and its score
+    best_word = None
+    best_score = 0
+    # iterate through word list
+    for word in word_list:
+        # print(word)
+        # score the words
+        score = score_word(word)
+        # find higher score then update winner
+        if score > best_score:
+            best_word = word
+            best_score = score
+        # if score is tie apply tie-breaker
+        elif score == best_score:
+            # prefer the 10 letter word
+            if len(best_word) != 10 and len(word) == 10:
+                best_word = word
+                best_score = score
+            # otherwise, perfer the shorter word
+            elif len(best_word) != 10 and len(word) < len(best_word):
+                best_word = word
+                best_score = score
+
+    return(best_word, best_score)
