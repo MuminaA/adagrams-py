@@ -60,34 +60,23 @@ def score_word(word):
     num_of_points = 0
 
     point_value = {
-        1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
-        2: ['D', 'G'],
-        3: ['B', 'C', 'M', 'P'],
-        4: ['F', 'H', 'V', 'W', 'Y'],
-        5: ['K'],
-        8: ['J', 'X'],
-        10:['Q', 'Z']
+        'A': 1, 'E': 1, 'I': 1, 'O': 1, 'U': 1, 'L': 1, 'N': 1, 'R': 1, 'S': 1, 'T': 1,
+        'D': 2, 'G': 2,
+        'B': 3, 'C': 3, 'M': 3, 'P': 3,
+        'F': 4, 'H': 4, 'V': 4, 'W': 4, 'Y': 4,
+        'K': 5,
+        'J': 8, 'X': 8,
+        'Q': 10, 'Z': 10
     }
 
-    for num, alpha in point_value.items():
-        #print(num, alpha)
-        for i in alpha:
-            #print(i)
-            for letter in upper_word:
-                # compare letter to dict value
-                if letter == i:
-                    # print(f"{word} and {i} are the same letters")
-                    # add the key(point)to the num of points
-                    #print(num)
-                    num_of_points += num
+    for letter in upper_word:
+        if letter in point_value:
+            num_of_points += point_value[letter]
 
     if 6 < len(word) < 11:
         # word gets an additional 8 points
         # print(f"{word} is longer than 6 words")
         num_of_points += 8
-    #else:
-        # word points dosent get additional points
-        #print(f"{word} is NOT longer than 6 words")
 
     #print(num_of_points)
     return num_of_points
